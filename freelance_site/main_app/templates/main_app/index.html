@@ -1,0 +1,30 @@
+{% extends 'main_app/layout.html' %}
+{% block title %}
+Главная страница
+{% endblock %}
+{% block content %}
+<div class="container mx-auto px-4">
+    <nav class="flex justify-between items-center p-4 bg-white shadow">
+        <div class="text-xl font-bold">Главная</div>
+        <div class="flex space-x-4">
+            {% if user_type == 'customer' %}
+                <a href="" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'executors' %}border-blue-500{% else %}border-transparent{% endif %}">Исполнители</a>
+                <a href="" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'my_orders' %}border-blue-500{% else %}border-transparent{% endif %}">Мои заказы</a>
+                <a href="" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'profile' %}border-blue-500{% else %}border-transparent{% endif %}">Профиль</a>
+                <a href="{% url 'logout' %}" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'logout' %}border-blue-500{% else %}border-transparent{% endif %}">Выход</a>
+            {% elif user_type == 'executor' %}
+                <a href="" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'find_orders' %}border-blue-500{% else %}border-transparent{% endif %}">Найти заказы</a>
+                <a href="" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'my_works' %}border-blue-500{% else %}border-transparent{% endif %}">Мои работы</a>
+                <a href="" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'profile' %}border-blue-500{% else %}border-transparent{% endif %}">Профиль</a>
+                <a href="{% url 'logout' %}" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'logout' %}border-blue-500{% else %}border-transparent{% endif %}">Выход</a>
+            {% else %}
+                <a href="" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'executors' %}border-blue-500{% else %}border-transparent{% endif %}">Исполнители</a>
+                <a href="" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'orders' %}border-blue-500{% else %}border-transparent{% endif %}">Заказы</a>
+                <a href="{% url 'login' %}" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'login' %}border-blue-500{% else %}border-transparent{% endif %}">Авторизация</a>
+                <a href="{% url 'register' %}" class="text-blue-500 hover:text-blue-700 border-b-2 border-blue-500 {% if request.resolver_match.url_name == 'register' %}border-blue-500{% else %}border-transparent{% endif %}">Регистрация</a>
+            {% endif %}
+        </div>
+    </nav>
+    <!-- Содержимое страницы -->
+</div>
+{% endblock %}

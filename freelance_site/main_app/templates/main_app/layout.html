@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Freelance Site</title>
+    <link rel="stylesheet" href="{% static 'main_app/css/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'main_app/images/favicon.png' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+<header>
+    <!-- Здесь может быть ваш логотип и навигационное меню -->
+</header>
+<main class="container mx-auto px-4">
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>
