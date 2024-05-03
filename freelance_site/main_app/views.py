@@ -8,11 +8,15 @@ from .models import Profile
 # Главная страница
 def index(request):
     user_type = ''
-    if request.user.is_authenticated:
-        if request.user.profile.user_type == 'customer':
-            user_type = 'customer'
-        elif request.user.profile.user_type == 'executor':
-            user_type = 'executor'
+    try:
+        if request.user.is_authenticated:
+            if request.user.profile.user_type == 'customer':
+                user_type = 'customer'
+            elif request.user.profile.user_type == 'executor':
+                user_type = 'executor'
+    except Profile.DoesNotExist:
+        # Обработка случая, когда у пользователя нет профиля
+        pass       
     return render(request, 'main_app/index.html', {'user_type': user_type})
 
 
@@ -20,7 +24,7 @@ def index(request):
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
-
+        print(form.errors)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -37,10 +41,12 @@ def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
+            print('register')
             user = form.save()
             Profile.objects.create(user=user, gender=form.cleaned_data.get('gender'), user_type=form.cleaned_data.get('user_type'))
             login(request, user)
-            return redirect('index')
+            
+            return redirect('login')
     else:
         form = CustomUserCreationForm()
     return render(request, 'main_app/register.html', {'form': form})
@@ -51,3 +57,19 @@ def register(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+
+def executors(request):
+    pass
+
+def my_orders(request):
+    pass
+
+def profile(request):
+    pass
+
+def find_orders(request):
+    pass
+
+def my_works(request):
+    pass

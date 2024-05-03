@@ -7,7 +7,9 @@
     <title>Freelance Site</title>
     <link rel="stylesheet" href="{% static 'main_app/css/style.css' %}">
     <link rel="icon" type="image/png" href="{% static 'main_app/images/favicon.png' %}">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'main_app/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 <body>
@@ -18,5 +20,6 @@
     {% block content %}
     {% endblock %}
 </main>
+<script src="{% static 'main_app/js/script.js' %}"></script>
 </body>
 </html>

@@ -77,14 +77,11 @@ WSGI_APPLICATION = 'freelance_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'freelance_db',
-        'USER': 'postgres',
-        'PASSWORD': '1603Ananas',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 LOGIN_REDIRECT_URL = 'index'
